@@ -5,35 +5,53 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    
-
-    private float jumpAmount;
-    private float jumpForce;
-    private bool isJumping;
-    private float moveHorizontal;
-    private float moveVertical;
+    [SerializeField] public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask groundLayer;
+    private bool isTouchingGround;
+    private float jumpAmount = 10;
+    private float maxSpeed = 5;
 
     // Start is called before the first frame update
     void Start()
     {
-        jumpAmount = 5;
-
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetKey("w"))
+    {  
+        //TODO Fix jumping, currently doesn't move properly with right or left, and does not jump high enough.
+        Vector2 inputVector = Vector2.zero;
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if (Input.GetKey("w") && isTouchingGround)
         {
-            rb.AddForce(Vector2.up * jumpAmount);
+            rb.velocity =  new Vector2(rb.velocity.x, jumpAmount);
+            
         }
+        /*if (Input.GetKey("w") && rb.velocity.y > 0f)
+        {
+
+        }*/
+		if (Input.GetKey("a")) {
+			inputVector += Vector2.left;
+		}
+		if (Input.GetKey("d")) {
+			inputVector += Vector2.right;
+		}
+
+        if (inputVector != Vector2.zero)
+        {
+            inputVector.Normalize();
+            rb.velocity = inputVector * maxSpeed;
+        }
+        
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+
+    void FixedUpdate()
     {
-        if(collision.gameObject.tag == "Ground")
-        {
-            isJumping = false;
-        }
+
+
+    
     }
 }
