@@ -504,10 +504,8 @@ GameObject:
   - component: {fileID: 1709301195}
   - component: {fileID: 1709301198}
   - component: {fileID: 1709301200}
-  - component: {fileID: 1709301201}
-  - component: {fileID: 1709301203}
-  - component: {fileID: 1709301202}
   - component: {fileID: 1709301204}
+  - component: {fileID: 1709301205}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -580,6 +578,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2116340142}
+  - {fileID: 1860447588}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -630,85 +629,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1002545, y: 1.4027481}
   m_EdgeRadius: 0
---- !u!114 &1709301201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709301194}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceeec3fb66b679742b868eb4d23ac246, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerVelocity: {fileID: 0}
---- !u!114 &1709301202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709301194}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 751989142bba53d41947b0e095803e4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 6
-  maxJumpHeight: 4
-  minJumpHeight: 1
-  timeToJumpApex: 0.4
-  accelerationTimeAirborne: 0.2
-  accelerationTimeGrounded: 0.1
-  forceFallSpeed: 20
-  wallJump: {x: 0, y: 0}
-  wallJumpClimb: {x: 0, y: 0}
-  wallLeapOff: {x: 0, y: 0}
-  wallSlideSpeedMax: 3
-  wallStickTime: 0.25
-  timeToWallUnstick: 0
-  gravity: 0
-  maxJumpVelocity: 0
-  minJumpVelocity: 0
-  velocity: {x: 0, y: 0, z: 0}
-  oldVelocity: {x: 0, y: 0, z: 0}
-  velocityXSmoothing: 0
-  playerMovement: {fileID: 0}
-  directionalInput: {x: 0, y: 0}
-  wallContact: 0
-  wallDirX: 0
---- !u!114 &1709301203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709301194}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c2c00a72fe969c4698476f171ce4670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionMask:
-    m_Bits: 0
-  skinWidth: 0.015
-  distanceBetweenRays: 0.25
-  boxCollider: {fileID: 0}
-  horizontalRayCount: 0
-  verticalRayCount: 0
-  horizontalRaySpacing: 0
-  verticalRaySpacing: 0
-  boundsWidth: 0
-  boundsHeight: 0
-  objectInput: {x: 0, y: 0}
-  slidingDownMaxSlope: 0
-  forceFall: 0
-  maxSlopeAngle: 80
-  faceDirection: 0
-  passThroughPlatform: 0
-  ascendSlope: 0
-  descendSlope: 0
 --- !u!114 &1709301204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,11 +642,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1709301198}
+  transform: {fileID: 1709301196}
   groundCheck: {fileID: 2116340142}
   groundCheckRadius: 0.01
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1709301205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709301194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0891f7301ab36b40aaaae27b9335474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 1860447588}
+  bulletPrefab: {fileID: 1140136421364769198, guid: d0733fd01ba430943909cc78bf43b492, type: 3}
+--- !u!1 &1860447587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860447588}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1860447588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860447587}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3140001, y: -0.23800002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1709301196}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2116340141
 GameObject:
   m_ObjectHideFlags: 0
