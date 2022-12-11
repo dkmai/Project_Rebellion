@@ -9,8 +9,8 @@ public class InputManager : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
     private bool isTouchingGround;
-    private float jumpAmount = 10;
-    private float maxSpeed = 5;
+    private float jumpAmount = 13;
+    private float maxSpeed = 6;
 
     private SpriteRenderer renderer;
     // Start is called before the first frame update
@@ -26,39 +26,22 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
-        //TODO Fix jumping, currently doesn't move properly with right or left, and does not jump high enough.
-        Vector2 inputVector = Vector2.zero;
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        
-        if (Input.GetKey("w") && isTouchingGround)
+        float dirX = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(dirX * maxSpeed, rb.velocity.y);
+        if(dirX < 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpAmount);
-            
-        }
-        if (Input.GetKey("d") && isTouchingGround)
-        {
-            inputVector += Vector2.right;
-            renderer.flipX = false;
-        }
-        else if (Input.GetKey("a") && isTouchingGround)
-        {
-            inputVector += Vector2.left;
             renderer.flipX = true;
         }
-        if (inputVector != Vector2.zero)
+
+        if(dirX > 0)
         {
-           //inputVector.Normalize();
-            rb.velocity = inputVector * maxSpeed;
+            renderer.flipX = false;
         }
-        
-        
-    }
 
-
-    void FixedUpdate()
-    {
-
-
-    
+        if (Input.GetButtonDown("Jump") && isTouchingGround)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpAmount);
+        }
     }
 }
