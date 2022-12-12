@@ -38,10 +38,5 @@ public class Weapon : MonoBehaviour
             Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         
         }
-
-        void OnTriggerEnter2D (Collider2D hitInfo)
-        {
-            DestroyImmediate(bulletPrefab, true);
-        }
     
 }

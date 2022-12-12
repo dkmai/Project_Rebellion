@@ -23,4 +23,16 @@ public class BulletScript : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            Destroy(gameObject);
+            enemy.Die();
+        }
+        
+        
+    }
 }
