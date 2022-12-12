@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
     private bool isTouchingGround;
-    private float jumpAmount = 13;
+    private float jumpAmount = 15;
     private float maxSpeed = 6;
     private bool m_FacingRight = true;
     // Start is called before the first frame update
