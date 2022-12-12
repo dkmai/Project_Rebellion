@@ -13,6 +13,10 @@ public class Weapon : MonoBehaviour
     private Vector3 mousePos;
 
     // Update is called once per frame
+    void Start()
+    {
+        canFire = true;
+    }
     void Update()
     {
          mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

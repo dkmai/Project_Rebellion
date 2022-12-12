@@ -39,6 +39,10 @@ public class InputManager : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpAmount);
         }
 
+        if (Input.GetKey("s"))
+        {
+            
+        }
         
     }
 
