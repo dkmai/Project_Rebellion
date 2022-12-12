@@ -16,9 +16,14 @@ public class Bullet : MonoBehaviour
         rb.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
     }
 
-    // Update is called once per frame
-    void Update()
+   /* void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        
-    }
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.Die();
+        }
+
+        Destroy(gameObject);   
+    }*/
 }
