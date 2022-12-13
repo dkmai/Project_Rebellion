@@ -52,5 +52,17 @@ public class InputManager : MonoBehaviour
 
         transform.Rotate(0, 180, 0);
     }
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
 
+  
+    void OnCollisionEnter2D (Collision2D c)
+    {
+        if (c.collider.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
