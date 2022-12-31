@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public float bulletSpeed = 20f;
+    public GameObject player;
     public bool canFire;
     private float timer;
     public float timeBetweenFiring;
@@ -16,24 +16,28 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         canFire = true;
+        timeBetweenFiring = .5f;
     }
     void Update()
     {
+        
          mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    
-        if (!canFire)
+        if (!player.GetComponent<InputManager>().inFreezeTime)
         {
-            timer += Time.deltaTime;
-            if (timer > timeBetweenFiring)
+            if (!canFire)
             {
-                canFire = true;
-                timer = 0;
+                timer += Time.deltaTime;
+                if (timer > timeBetweenFiring)
+                {
+                    canFire = true;
+                    timer = 0;
+                }
             }
-        }
-        if (Input.GetButtonDown("Fire1") && canFire)
-        {
-            canFire = false;
-            Shoot();    
+            if (Input.GetButtonDown("Fire1") && canFire)
+            {
+                canFire = false;
+                Shoot();    
+            }
         }
     }
         void Shoot()
