@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         
-         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (!player.GetComponent<InputManager>().inFreezeTime)
         {
             if (!canFire)

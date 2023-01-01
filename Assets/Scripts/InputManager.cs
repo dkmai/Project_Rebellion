@@ -85,7 +85,7 @@ public class InputManager : MonoBehaviour
     private void CheckFreezeTime()
     {
         
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown("left shift"))
         {
             inFreezeTime = !inFreezeTime;
         }
@@ -104,7 +104,6 @@ public class InputManager : MonoBehaviour
         }
         if (!inFreezeTime)
         {
-            Debug.Log("We are no longer in freeze time!");
             rb.constraints = RigidbodyConstraints2D.None;
         }
     }
